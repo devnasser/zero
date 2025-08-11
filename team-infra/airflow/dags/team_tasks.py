@@ -32,7 +32,7 @@ with DAG(
     schedule_interval=None,
     start_date=datetime(2025, 8, 11),
     catchup=False,
-    max_active_tasks=4,
+    max_active_tasks=12,
     tags=["team"],
 ) as dag:
     for member in MEMBERS:
