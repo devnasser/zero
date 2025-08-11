@@ -29,6 +29,8 @@ services:
     network_mode: host
   airflow:
     image: docker.io/apache/airflow:2.9.2
+    depends_on:
+      - postgres
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@127.0.0.1:5432/airflow
@@ -39,8 +41,9 @@ services:
     ports:
       - "8088:8080"
     network_mode: host
-    command: >
-      bash -c "airflow db upgrade && \
+    command: >-
+      bash -c "until pg_isready -h 127.0.0.1 -p 5432 -U airflow; do sleep 2; done && \
+               airflow db upgrade && \
                airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com && \
                airflow scheduler & airflow webserver"
 
