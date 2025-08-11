@@ -18,10 +18,20 @@ services:
     ports:
       - "9100:9100"
     network_mode: host
+  postgres:
+    image: docker.io/postgres:15-alpine
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    network_mode: host
   airflow:
     image: docker.io/apache/airflow:2.9.2
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@127.0.0.1:5432/airflow
       AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
       AIRFLOW__CORE__LOAD_EXAMPLES: "False"
     volumes:
@@ -33,3 +43,7 @@ services:
       bash -c "airflow db upgrade && \
                airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com && \
                airflow scheduler & airflow webserver"
+
+volumes:
+  pg_data:
+    driver: local
