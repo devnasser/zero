@@ -1,0 +1,32 @@
+{
+  "entities": [
+    {
+      "name": "Ticket",
+      "fields": [
+        {"name": "title", "type": "string", "required": true},
+        {"name": "description", "type": "text"},
+        {"name": "priority", "type": "enum", "options": ["low","medium","high"], "default": "medium"},
+        {"name": "status", "type": "enum", "options": ["open","in_progress","resolved","closed"], "default": "open"},
+        {"name": "assignee_id", "type": "relation", "relation": "User"}
+      ],
+      "indexes": [ ["status"], ["priority"], ["assignee_id"] ]
+    },
+    {"name": "Comment", "fields": [
+      {"name": "ticket_id", "type": "relation", "relation": "Ticket", "required": true},
+      {"name": "body", "type": "text", "required": true}
+    ]}
+  ],
+  "views": {
+    "tables": [
+      {"entity": "Ticket", "columns": ["id","title","priority","status","assignee_id","created_at"], "filters": ["status","priority","assignee_id"]}
+    ],
+    "forms": [
+      {"entity": "Ticket", "fields": ["title","description","priority","assignee_id"]}
+    ]
+  },
+  "workflows": [
+    {"on": "Ticket.created", "if": "priority=='high'", "then": [{"action": "email", "to": "ops@example.com", "template": "urgent_ticket"}]},
+    {"on": "Ticket.status:resolved", "then": [{"action": "email", "to": "${Ticket.requester_email}", "template": "resolved"}]}
+  ],
+  "api": { "publish": ["Ticket","Comment"] }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "org/zerocode",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "laravel/framework": "^11.0",
+    "livewire/livewire": "^3.5",
+    "laravel/sanctum": "^4.0",
+    "spatie/laravel-permission": "^6.0",
+    "spatie/laravel-activitylog": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "ZeroCode\\": "src/"
+    }
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r 'file_put_contents(\".env\", \":\");' || true"
+    ]
+  }
+}

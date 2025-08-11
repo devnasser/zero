@@ -1,0 +1,23 @@
+{
+  "entities": [
+    {"name": "Lead", "fields": [
+      {"name": "name", "type": "string", "required": true},
+      {"name": "email", "type": "string"},
+      {"name": "phone", "type": "string"},
+      {"name": "source", "type": "enum", "options": ["web","referral","event","other"], "default": "web"}
+    ]},
+    {"name": "Opportunity", "fields": [
+      {"name": "lead_id", "type": "relation", "relation": "Lead", "required": true},
+      {"name": "stage", "type": "enum", "options": ["new","qualify","proposal","won","lost"], "default": "new"},
+      {"name": "amount", "type": "number", "precision": 2}
+    ]}
+  ],
+  "views": {
+    "tables": [ {"entity": "Lead", "columns": ["id","name","email","source","created_at"]} ],
+    "forms": [ {"entity": "Lead", "fields": ["name","email","phone","source"]} ]
+  },
+  "workflows": [
+    {"on": "Lead.created", "then": [{"action": "email", "to": "sales@example.com", "template": "new_lead"}]}
+  ],
+  "api": {"publish": ["Lead","Opportunity"]}
+}
