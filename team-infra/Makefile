@@ -3,7 +3,7 @@ init-infra:
 	pip install --break-system-packages podman-compose
 
 build-image:
-	podman build -t localhost/team-base:1.0 -f Dockerfile .
+	podman build -t localhost/laravel-base:1.0 -f Dockerfile.laravel .
 
 up: build-image
 	podman-compose up -d

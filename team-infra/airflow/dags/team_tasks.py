@@ -38,11 +38,10 @@ with DAG(
     for member in MEMBERS:
         DockerOperator(
             task_id=f"run_{member}",
-            image="team-base:1.0",
-            command=f"bash -c 'echo Running task for {member}'",
+            image="laravel-base:1.0",
+            command=f"bash -c 'composer install --no-interaction && php artisan --version'",
             auto_remove=True,
-            cpus=1,
-            mem_limit="2g",
+            # resource limits optional in rootless mode
             container_name=member,
             tty=True,
         )

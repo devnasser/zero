@@ -1,0 +1,17 @@
+# Laravel development base image (no Node/NPM).
+FROM php:8.3-fpm-alpine
+
+# Install required system packages and PHP extensions
+RUN set -eux && \
+    apk add --no-cache git bash sqlite-libs sqlite-dev oniguruma-dev && \
+    docker-php-ext-install pdo pdo_sqlite && \
+    # clean apk cache
+    rm -rf /var/cache/apk/*
+
+# Install Composer (copy from official image layer)
+COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
+
+WORKDIR /workspace
+
+# Default command can be overridden by container runtime
+CMD ["php-fpm"]
