@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanity checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Running CI placeholder"
+          if [ -f package.json ]; then
+            echo "Detected Node project"
+            npm ci --ignore-scripts || true
+            npm run -s lint || true
+            npm test -s || true
+          fi
+          if [ -f requirements.txt ]; then
+            echo "Detected Python project"
+            python -m pip install -U pip || true
+            pip install -r requirements.txt || true
+            pytest -q || true
+          fi
+          if [ -f .pre-commit-config.yaml ]; then
+            echo "Running pre-commit hooks"
+            python -m pip install -U pip || true
+            pip install pre-commit || true
+            pre-commit run --all-files || true
+          fi

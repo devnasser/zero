@@ -1,0 +1,18 @@
+{
+  "entities": [
+    {"name": "Candidate", "fields": [
+      {"name": "name", "type": "string", "required": true},
+      {"name": "email", "type": "string"},
+      {"name": "stage", "type": "enum", "options": ["applied","screen","interview","offer","hired","rejected"], "default": "applied"}
+    ]},
+    {"name": "LeaveRequest", "fields": [
+      {"name": "employee_id", "type": "relation", "relation": "User", "required": true},
+      {"name": "from", "type": "date"},
+      {"name": "to", "type": "date"},
+      {"name": "status", "type": "enum", "options": ["pending","approved","rejected"], "default": "pending"}
+    ]}
+  ],
+  "workflows": [
+    {"on": "LeaveRequest.created", "then": [{"action": "email", "to": "manager@example.com", "template": "leave_request"}]}
+  ]
+}

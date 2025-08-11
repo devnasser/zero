@@ -1,0 +1,61 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+logs/
+*.tmp
+*.swp
+*.swo
+.env
+.env.*
+.envrc
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# Node/JS
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.next/
+.vercel/
+.svelte-kit/
+.parcel-cache/
+.npm/
+.yarn/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.eggs/
+*.egg-info/
+
+# Java/Gradle
+.target/
+target/
+out/
+.gradle/
+*.class
+*.jar
+*.war
+
+# Rust
+/target/
+
+# Dart/Flutter
+.dart_tool/
+.packages
+
+# Docker
+docker-data/
+
+# OS
+Icon?
+ehthumbs.db
