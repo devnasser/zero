@@ -22,3 +22,8 @@ This repository is prepared with an operational scaffold for fast, safe collabor
 
 ## Team
 See `docs/TEAM.md` for members and pods.
+
+## Speed Test
+- Team process: see `docs/SPEED_TEST.md`
+- Local micro-bench: `scripts/speed-test.sh`
+- CI parallel test: GitHub Actions `SpeedTest` workflow

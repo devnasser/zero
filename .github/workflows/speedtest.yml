@@ -1,0 +1,26 @@
+name: SpeedTest
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'  # weekly
+
+jobs:
+  matrix-parallel:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1,2,3,4,5,6,7,8]
+    steps:
+      - name: Start shard
+        run: |
+          echo "Starting shard ${{ matrix.shard }} at $(date -Is)"
+      - name: Workload
+        run: |
+          dd if=/dev/urandom of=blob_${{ matrix.shard }} bs=1M count=1 status=none
+          sha256sum blob_${{ matrix.shard }} >/dev/null
+          gzip -c blob_${{ matrix.shard }} > blob_${{ matrix.shard }}.gz
+      - name: Finish shard
+        run: |
+          echo "Finished shard ${{ matrix.shard }} at $(date -Is)"
