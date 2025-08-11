@@ -1,0 +1,27 @@
+# Laravel development base image (no Node/NPM).
+FROM php:8.3-fpm-alpine
+
+# Install required system packages and PHP extensions
+RUN set -eux && \
+    apk add --no-cache git bash sqlite-libs sqlite-dev oniguruma-dev && \
+    docker-php-ext-install pdo pdo_sqlite && \
+    # clean apk cache
+    rm -rf /var/cache/apk/*
+
+# Install Composer directly
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
+
+# Install Swoole via PECL for Octane and enable Opcache+JIT
+RUN set -eux && \
+    apk add --no-cache --virtual .build-deps build-base linux-headers openssl-dev autoconf && \
+    pecl install swoole-5.1.1 && \
+    docker-php-ext-enable swoole && \
+    apk del .build-deps && \
+    echo "opcache.enable=1\nopcache.enable_cli=1\nopcache.jit_buffer_size=256M\nopcache.jit=1255" > /usr/local/etc/php/conf.d/opcache.ini
+
+WORKDIR /workspace
+
+# Default command can be overridden by container runtime
+CMD ["php-fpm"]

@@ -1,0 +1,70 @@
+version: '3.9'
+services:
+  prometheus:
+    image: docker.io/prom/prometheus:v2.53.3
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    network_mode: host
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    privileged: true
+    ports:
+      - "8080:8080"
+    network_mode: host
+  node-exporter:
+    image: docker.io/prom/node-exporter:v1.8.0
+    ports:
+      - "9100:9100"
+    network_mode: host
+  postgres:
+    image: docker.io/postgres:15-alpine
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    network_mode: host
+  airflow-web:
+    image: docker.io/apache/airflow:2.9.2
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@127.0.0.1:5432/airflow
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__WEBSERVER__WEB_SERVER_PORT: "8088"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    ports:
+      - "8088:8080"
+    network_mode: host
+    command: >-
+      bash -c "set -euo pipefail && \
+                until pg_isready -h 127.0.0.1 -p 5432 -U airflow; do sleep 2; done && \
+                exec airflow webserver --port 8088"
+
+  airflow-scheduler:
+    image: docker.io/apache/airflow:2.9.2
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@127.0.0.1:5432/airflow
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    network_mode: host
+    command: >-
+      bash -c "set -euo pipefail && \
+                apt-get update -qq && apt-get install -y --no-install-recommends php-cli composer >/dev/null && \
+                until pg_isready -h 127.0.0.1 -p 5432 -U airflow; do sleep 2; done && \
+                exec airflow scheduler"
+
+volumes:
+  pg_data:
+    driver: local
