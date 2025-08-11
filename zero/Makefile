@@ -1,5 +1,8 @@
+PROCS:=$(shell nproc --all)
+PARA=$(shell echo $$(( $(PROCS) * 2 )))
+
 test:
-	composer test --parallel
+	vendor/bin/pest --parallel --processes=$(PARA)
 
 analyse:
 	vendor/bin/phpstan analyse --memory-limit=2G --no-progress

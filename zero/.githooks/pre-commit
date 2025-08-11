@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-make test && make analyse || exit 1
+scripts/sandbox-spawn.sh || exit 1
