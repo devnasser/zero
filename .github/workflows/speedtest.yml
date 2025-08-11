@@ -15,12 +15,25 @@ jobs:
     steps:
       - name: Start shard
         run: |
-          echo "Starting shard ${{ matrix.shard }} at $(date -Is)"
+          echo "Starting shard ${{ matrix.shard }} at $(date -Is)" | tee shard_${{ matrix.shard }}.log
+          echo "Runner: $RUNNER_NAME ($RUNNER_OS)" | tee -a shard_${{ matrix.shard }}.log
+          nproc || true
       - name: Workload
         run: |
+          start=$(date +%s%3N || date +%s)
           dd if=/dev/urandom of=blob_${{ matrix.shard }} bs=1M count=1 status=none
           sha256sum blob_${{ matrix.shard }} >/dev/null
           gzip -c blob_${{ matrix.shard }} > blob_${{ matrix.shard }}.gz
+          end=$(date +%s%3N || date +%s)
+          dur=$((end-start))
+          echo "DurationMs=${dur}" | tee -a shard_${{ matrix.shard }}.log
       - name: Finish shard
         run: |
-          echo "Finished shard ${{ matrix.shard }} at $(date -Is)"
+          echo "Finished shard ${{ matrix.shard }} at $(date -Is)" | tee -a shard_${{ matrix.shard }}.log
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: speedtest-logs
+          path: shard_${{ matrix.shard }}.log
+          if-no-files-found: warn
+          retention-days: 7

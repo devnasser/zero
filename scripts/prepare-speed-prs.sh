@@ -4,6 +4,7 @@ set -euo pipefail
 PARTICIPANTS_FILE="${PARTICIPANTS_FILE:-tools/speedtest/participants.txt}"
 PUSH="${PUSH:-false}"
 OPEN_PR="${OPEN_PR:-false}"
+DRY_RUN="${DRY_RUN:-false}"
 BASE_BRANCH="${BASE_BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 LABELS="${LABELS:-speedtest}"
 
@@ -18,6 +19,10 @@ TS=$(date +%Y%m%d-%H%M%S)
 while IFS= read -r pid; do
   [ -z "$pid" ] && continue
   BRANCH="speed/${pid}-${TS}"
+  if [ "$DRY_RUN" = "true" ]; then
+    echo "[DRY_RUN] would create branch $BRANCH from $BASE_BRANCH and add bench/${pid}.txt"
+    continue
+  fi
   git checkout -b "$BRANCH" "$BASE_BRANCH"
   echo "speedtest ${pid} ${TS}" > "bench/${pid}.txt"
   git add "bench/${pid}.txt"
