@@ -1,6 +1,6 @@
 from datetime import datetime
 from airflow import DAG
-from airflow.providers.docker.operators.docker import DockerOperator
+from airflow.operators.bash import BashOperator
 
 MEMBERS = [
     "bc-4b7c40ee-61da-4e40-a1b5-00130ebeab05",
@@ -36,12 +36,7 @@ with DAG(
     tags=["team"],
 ) as dag:
     for member in MEMBERS:
-        DockerOperator(
+        BashOperator(
             task_id=f"run_{member}",
-            image="laravel-base:octane",
-            command=f"bash -c 'composer install --no-interaction && php artisan --version'",
-            auto_remove=True,
-            # resource limits optional in rootless mode
-            container_name=member,
-            tty=True,
+            bash_command="composer install --no-interaction && php artisan --version",
         )
