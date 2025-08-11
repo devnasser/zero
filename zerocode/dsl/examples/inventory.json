@@ -1,0 +1,54 @@
+{
+  "entities": [
+    {"name": "Product", "fields": [
+      {"name": "sku", "type": "string", "required": true},
+      {"name": "name", "type": "string", "required": true},
+      {"name": "category", "type": "string"},
+      {"name": "price", "type": "number", "precision": 2, "default": 0},
+      {"name": "reorder_level", "type": "number", "default": 0}
+    ], "indexes": [["sku"],["category"]]},
+
+    {"name": "StockEntry", "fields": [
+      {"name": "product_id", "type": "relation", "relation": "Product", "required": true},
+      {"name": "quantity", "type": "number", "default": 0},
+      {"name": "type", "type": "enum", "options": ["in","out","adjust"], "default": "in"}
+    ]},
+
+    {"name": "Supplier", "fields": [
+      {"name": "name", "type": "string", "required": true},
+      {"name": "email", "type": "string"},
+      {"name": "phone", "type": "string"}
+    ]},
+
+    {"name": "PurchaseOrder", "fields": [
+      {"name": "supplier_id", "type": "relation", "relation": "Supplier", "required": true},
+      {"name": "status", "type": "enum", "options": ["draft","submitted","received","cancelled"], "default": "draft"}
+    ]},
+
+    {"name": "SalesOrder", "fields": [
+      {"name": "customer_name", "type": "string", "required": true},
+      {"name": "status", "type": "enum", "options": ["draft","confirmed","shipped","cancelled"], "default": "draft"}
+    ]},
+
+    {"name": "Shipment", "fields": [
+      {"name": "sales_order_id", "type": "relation", "relation": "SalesOrder", "required": true},
+      {"name": "carrier", "type": "string"},
+      {"name": "tracking", "type": "string"}
+    ]}
+  ],
+  "views": {
+    "tables": [
+      {"entity": "Product", "columns": ["id","sku","name","category","price","created_at"], "filters": ["category"], "actions": ["edit","delete"]},
+      {"entity": "StockEntry", "columns": ["id","product_id","type","quantity","created_at"], "filters": ["type","product_id"]}
+    ],
+    "forms": [
+      {"entity": "Product", "fields": ["sku","name","category","price","reorder_level"]},
+      {"entity": "StockEntry", "fields": ["product_id","type","quantity"]}
+    ]
+  },
+  "workflows": [
+    {"on": "StockEntry.created", "if": "type=='in'", "then": [{"action": "recalc", "target": "Product"}]},
+    {"on": "Product.updated", "if": "reorder_level>0 && stock<=reorder_level", "then": [{"action": "email", "to": "procurement@example.com", "template": "reorder"}]}
+  ],
+  "api": {"publish": ["Product","StockEntry","Supplier","PurchaseOrder","SalesOrder","Shipment"]}
+}
