@@ -3244,3 +3244,17 @@ team-infra_airflow_1        Up 31 seconds             docker.io/apache/airflow:2
 \n===== POTENTIAL ISSUES =====
 time="2025-08-11T20:51:46Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
 time="2025-08-11T20:51:46Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+
+===== Mon Aug 11 08:52:46 PM UTC 2025 =====
+===== CONTAINER STATUS =====
+time="2025-08-11T20:52:46Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:52:46Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+NAMES                       STATUS                    IMAGE
+team-infra_prometheus_1     Up 30 minutes             docker.io/prom/prometheus:v2.53.3
+team-infra_cadvisor_1       Up 30 minutes (starting)  gcr.io/cadvisor/cadvisor:v0.49.1
+team-infra_node-exporter_1  Up 30 minutes             docker.io/prom/node-exporter:v1.8.0
+team-infra_postgres_1       Up 19 seconds             docker.io/library/postgres:15-alpine
+team-infra_airflow_1        Up 19 seconds             docker.io/apache/airflow:2.9.2
+\n===== POTENTIAL ISSUES =====
+time="2025-08-11T20:52:46Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:52:46Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."

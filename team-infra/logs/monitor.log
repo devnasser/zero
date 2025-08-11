@@ -459,3 +459,105 @@ Postgres container غير متاح حالياً.
 
 ===== LOAD =====
 | | 20:51:36 up | 1:49, | 0 user, | load average: 0.28, 0.15, 0.15
+
+===== Mon Aug 11 08:52:06 PM UTC 2025 =====
+
+===== SYSTEM =====
+|total|used|free|shared|available||
+|Mem|16017 MiB|2583 MiB|2779 MiB|22 MiB|13434 MiB|
+
+===== DISK =====
+|FS|Size|Used|Avail|Use%|Mounted|
+|overlay|126G|9.9G|110G|9%|/|
+
+===== CONTAINERS =====
+time="2025-08-11T20:52:06Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:52:06Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+NAMES                       STATUS                    IMAGE
+team-infra_prometheus_1     Up 29 minutes             docker.io/prom/prometheus:v2.53.3
+team-infra_cadvisor_1       Up 29 minutes (starting)  gcr.io/cadvisor/cadvisor:v0.49.1
+team-infra_node-exporter_1  Up 29 minutes             docker.io/prom/node-exporter:v1.8.0
+team-infra_postgres_1       Up 13 minutes             docker.io/library/postgres:15-alpine
+team-infra_airflow_1        Up 51 seconds             docker.io/apache/airflow:2.9.2
+
+===== TEAM_TASKS PROGRESS =====
+time="2025-08-11T20:52:06Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:52:07Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+|الحالة|العدد|
+|نجاح|0|
+|تشغيل|0|
+|فشل|0|
+|الإجمالي|0|
+
+> نسبة الإنجاز: 0%
+
+===== LOAD =====
+| | 20:52:07 up | 1:50, | 0 user, | load average: 0.33, 0.18, 0.16
+
+===== Mon Aug 11 08:52:37 PM UTC 2025 =====
+
+===== SYSTEM =====
+|total|used|free|shared|available||
+|Mem|16017 MiB|2670 MiB|2914 MiB|21 MiB|13347 MiB|
+
+===== DISK =====
+|FS|Size|Used|Avail|Use%|Mounted|
+|overlay|126G|9.9G|110G|9%|/|
+
+===== CONTAINERS =====
+time="2025-08-11T20:52:37Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:52:37Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+NAMES                       STATUS                    IMAGE
+team-infra_prometheus_1     Up 29 minutes             docker.io/prom/prometheus:v2.53.3
+team-infra_cadvisor_1       Up 29 minutes (starting)  gcr.io/cadvisor/cadvisor:v0.49.1
+team-infra_node-exporter_1  Up 29 minutes             docker.io/prom/node-exporter:v1.8.0
+team-infra_postgres_1       Up 10 seconds             docker.io/library/postgres:15-alpine
+team-infra_airflow_1        Up 10 seconds             docker.io/apache/airflow:2.9.2
+
+===== TEAM_TASKS PROGRESS =====
+time="2025-08-11T20:52:37Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:52:37Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+|الحالة|العدد|
+|نجاح|0|
+|تشغيل|0|
+|فشل|0|
+|الإجمالي|0|
+
+> نسبة الإنجاز: 0%
+
+===== LOAD =====
+| | 20:52:38 up | 1:50, | 0 user, | load average: 0.44, 0.22, 0.18
+
+===== Mon Aug 11 08:53:08 PM UTC 2025 =====
+
+===== SYSTEM =====
+|total|used|free|shared|available||
+|Mem|16017 MiB|3032 MiB|2197 MiB|21 MiB|12985 MiB|
+
+===== DISK =====
+|FS|Size|Used|Avail|Use%|Mounted|
+|overlay|126G|9.9G|110G|9%|/|
+
+===== CONTAINERS =====
+time="2025-08-11T20:53:08Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:53:08Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+NAMES                       STATUS                    IMAGE
+team-infra_prometheus_1     Up 30 minutes             docker.io/prom/prometheus:v2.53.3
+team-infra_cadvisor_1       Up 30 minutes (starting)  gcr.io/cadvisor/cadvisor:v0.49.1
+team-infra_node-exporter_1  Up 30 minutes             docker.io/prom/node-exporter:v1.8.0
+team-infra_postgres_1       Up 41 seconds             docker.io/library/postgres:15-alpine
+team-infra_airflow_1        Up 41 seconds             docker.io/apache/airflow:2.9.2
+
+===== TEAM_TASKS PROGRESS =====
+time="2025-08-11T20:53:08Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T20:53:08Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+|الحالة|العدد|
+|نجاح|0|
+|تشغيل|0|
+|فشل|0|
+|الإجمالي|0|
+
+> نسبة الإنجاز: 0%
+
+===== LOAD =====
+| | 20:53:08 up | 1:51, | 0 user, | load average: 0.60, 0.27, 0.20
