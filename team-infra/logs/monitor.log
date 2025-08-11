@@ -1650,3 +1650,37 @@ time="2025-08-11T21:09:53Z" level=warning msg="Using cgroups-v1 which is depreca
 
 ===== LOAD =====
 | | 21:09:53 up | 2:07, | 0 user, | load average: 0.43, 0.39, 0.27
+
+===== Mon Aug 11 09:10:23 PM UTC 2025 =====
+
+===== SYSTEM =====
+|total|used|free|shared|available||
+|Mem|16017 MiB|2198 MiB|2940 MiB|21 MiB|13819 MiB|
+
+===== DISK =====
+|FS|Size|Used|Avail|Use%|Mounted|
+|overlay|126G|10G|110G|9%|/|
+
+===== CONTAINERS =====
+time="2025-08-11T21:10:23Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T21:10:23Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+NAMES                       STATUS                    IMAGE
+team-infra_prometheus_1     Up 47 minutes             docker.io/prom/prometheus:v2.53.3
+team-infra_cadvisor_1       Up 47 minutes (starting)  gcr.io/cadvisor/cadvisor:v0.49.1
+team-infra_node-exporter_1  Up 47 minutes             docker.io/prom/node-exporter:v1.8.0
+team-infra_postgres_1       Up About a minute         docker.io/library/postgres:15-alpine
+team-infra_airflow-web_1    Up About a minute         docker.io/apache/airflow:2.9.2
+
+===== TEAM_TASKS PROGRESS =====
+time="2025-08-11T21:10:23Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+time="2025-08-11T21:10:23Z" level=warning msg="Using cgroups-v1 which is deprecated in favor of cgroups-v2 with Podman v5 and will be removed in a future version. Set environment variable `PODMAN_IGNORE_CGROUPSV1_WARNING` to hide this warning."
+|الحالة|العدد|
+|نجاح|0|
+|تشغيل|0|
+|فشل|0|
+|الإجمالي|44|
+
+> نسبة الإنجاز: 0%
+
+===== LOAD =====
+| | 21:10:24 up | 2:08, | 0 user, | load average: 0.34, 0.37, 0.27
