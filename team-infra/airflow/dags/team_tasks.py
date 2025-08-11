@@ -38,7 +38,7 @@ with DAG(
     for member in MEMBERS:
         DockerOperator(
             task_id=f"run_{member}",
-            image="laravel-base:1.0",
+            image="laravel-base:octane",
             command=f"bash -c 'composer install --no-interaction && php artisan --version'",
             auto_remove=True,
             # resource limits optional in rootless mode
