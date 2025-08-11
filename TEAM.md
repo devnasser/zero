@@ -1,11 +1,8 @@
 # فريق التطوير
 
-## قائد الفريق
-
-- bc-4b7c40ee-61da-4e40-a1b5-00130ebeab05
-
 ## الأعضاء
 
+- bc-4b7c40ee-61da-4e40-a1b5-00130ebeab05
 - bc-c6ad5e89-6078-478a-bc8f-9a0a9b2eaf07
 - bc-53e6b4fb-f99d-4529-8009-87cded370c2e
 - bc-6f51d46b-acaf-4420-bfcc-dde383262ffd
