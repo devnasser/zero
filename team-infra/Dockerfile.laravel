@@ -8,8 +8,10 @@ RUN set -eux && \
     # clean apk cache
     rm -rf /var/cache/apk/*
 
-# Install Composer (copy from official image layer)
-COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
+# Install Composer directly
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
 
 WORKDIR /workspace
 
