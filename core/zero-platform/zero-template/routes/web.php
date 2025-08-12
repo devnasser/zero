@@ -147,3 +147,26 @@ Route::get('/welcome', function () {
         'version' => '1.0.0'
     ]);
 })->name('welcome');
+
+// Zero Platform Additional Routes
+Route::get('/zero/templates', function () {
+    return view('zero.templates');
+})->name('zero.templates');
+
+Route::get('/zero/projects', function () {
+    $stats = [
+        'active' => 3,
+        'completed' => 7,
+        'development' => 2,
+        'total' => 12
+    ];
+    return view('zero.projects', compact('stats'));
+})->name('zero.projects');
+
+Route::get('/zero/settings', function () {
+    return view('zero.settings');
+})->name('zero.settings');
+
+Route::get('/zero/documentation', function () {
+    return view('zero.documentation');
+})->name('zero.documentation');
