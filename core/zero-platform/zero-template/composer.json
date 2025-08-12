@@ -14,10 +14,12 @@
     "require": {
         "php": "^8.4",
         "laravel/framework": "^11.0",
+        "laravel/tinker": "^2.10",
         "livewire/livewire": "^3.0",
-        "laravel/tinker": "^2.10"
+        "symfony/yaml": "^7.3"
     },
     "require-dev": {
+        "mockery/mockery": "^1.6",
         "phpunit/phpunit": "^11.0"
     },
     "autoload": {
