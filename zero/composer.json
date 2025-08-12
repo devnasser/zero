@@ -1,0 +1,31 @@
+{
+    "name": "zero/platform",
+    "description": "Zero no-code platform core",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "laravel/framework": "^10.0",
+        "pestphp/pest": "^2.0",
+        "laravel/pint": "^1.0",
+        "phpstan/phpstan": "^1.11",
+        "nunomaduro/collision": "^7.0",
+        "brianium/paratest": "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "post-install-cmd": [
+            "@php -r 'file_exists(\".githooks/pre-commit\") && chmod(\".githooks/pre-commit\", 0755);'"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

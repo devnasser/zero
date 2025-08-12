@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+scripts/sandbox-spawn.sh || exit 1
