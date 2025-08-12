@@ -5,6 +5,7 @@ Run: python scripts/auto_split.py Kanban.md
 """
 import sys
 from pathlib import Path
+import re
 
 if len(sys.argv) < 2:
     print("usage: auto_split.py Kanban.md")
@@ -14,9 +15,15 @@ text = board.read_text().splitlines()
 new_lines = []
 for line in text:
     new_lines.append(line)
-    if '(>4h)' in line:
-        base = line.replace('(>4h)', '').strip()
-        new_lines.append(base + ' (split-1)')
-        new_lines.append(base + ' (split-2)')
+    # new logic: split any marker (>30m|>1h|>2h|>4h) into 15m chunks
+    match = re.search(r'\(>(\d+)([hm])\)', line)
+    if match:
+        amount = int(match.group(1))
+        unit = match.group(2)
+        minutes = amount*60 if unit=='h' else amount
+        parts = (minutes + 14)//15
+        base = re.sub(r'\(>.*?\)', '', line).strip()
+        for i in range(1, parts+1):
+            new_lines.append(f"{base} (split-{i})")
 board.write_text('\n'.join(new_lines))
 print('Auto-split complete')
