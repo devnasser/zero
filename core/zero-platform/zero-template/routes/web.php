@@ -170,3 +170,11 @@ Route::get('/zero/settings', function () {
 Route::get('/zero/documentation', function () {
     return view('zero.documentation');
 })->name('zero.documentation');
+
+// Advanced Generator Routes
+Route::prefix('zero')->name('zero.')->group(function () {
+    Route::post('/generate', [App\Http\Controllers\Zero\GeneratorController::class, 'generate'])->name('generate');
+    Route::post('/preview', [App\Http\Controllers\Zero\GeneratorController::class, 'preview'])->name('preview');
+    Route::post('/validate', [App\Http\Controllers\Zero\GeneratorController::class, 'validate'])->name('validate');
+    Route::get('/download/{file}', [App\Http\Controllers\Zero\GeneratorController::class, 'download'])->name('download');
+});
