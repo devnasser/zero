@@ -20,8 +20,10 @@ for line in text:
     if match:
         amount = int(match.group(1))
         unit = match.group(2)
+        from os import getenv
+        chunk = int(getenv('SPLIT_MAX_MIN', '10'))
         minutes = amount*60 if unit=='h' else amount
-        parts = (minutes + 14)//15
+        parts = (minutes + (chunk-1))//chunk
         base = re.sub(r'\(>.*?\)', '', line).strip()
         for i in range(1, parts+1):
             new_lines.append(f"{base} (split-{i})")
